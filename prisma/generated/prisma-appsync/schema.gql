@@ -1,0 +1,823 @@
+input AWSDateTimeFilterInput {
+    equals: AWSDateTime
+    gt: AWSDateTime
+    gte: AWSDateTime
+    in: [AWSDateTime!]
+    lt: AWSDateTime
+    lte: AWSDateTime
+    not: AWSDateTimeFilterInput
+    notIn: [AWSDateTime!]
+}
+
+input AWSEmailFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSEmail
+    in: [AWSEmail!]
+    not: AWSEmailFilterInput
+    notIn: [AWSEmail!]
+    startsWith: String
+}
+
+input AWSJSONFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSJSON
+    in: [AWSJSON!]
+    not: AWSJSONFilterInput
+    notIn: [AWSJSON!]
+    startsWith: String
+}
+
+input AWSURLFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSURL
+    in: [AWSURL!]
+    not: AWSURLFilterInput
+    notIn: [AWSURL!]
+    startsWith: String
+}
+
+type BatchPayload {
+    count: Int
+}
+
+input BooleanFilterInput {
+    equals: Boolean
+    not: BooleanFilterInput
+}
+
+input FloatFilterInput {
+    equals: Float
+    gt: Float
+    gte: Float
+    in: [Float!]
+    lt: Float
+    lte: Float
+    not: FloatFilterInput
+    notIn: [Float!]
+}
+
+input IntFilterInput {
+    equals: Int
+    gt: Int
+    gte: Int
+    in: [Int!]
+    lt: Int
+    lte: Int
+    not: IntFilterInput
+    notIn: [Int!]
+}
+
+type Mutation {
+    # Create a new single User record.
+    createUser(data: UserCreateInput!): User
+
+    # Create multiple new User records.
+    createManyUsers(
+        data: [UserCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    # Update an existing single User record.
+    updateUser(
+        where: UserWhereUniqueInput!
+        data: UserUpdateInput!
+    ): User
+
+    # Update multiple existing User records.
+    updateManyUsers(
+        where: UserWhereFilterInput!
+        data: UserUpdateInput!
+    ): BatchPayload
+
+    # Update an existing or create a new single User record.
+    upsertUser(
+        data: UserUpdateInput!
+        where: UserWhereUniqueInput!
+    ): User
+
+    # Delete a single User record.
+    deleteUser(where: UserWhereUniqueInput!): User
+
+    # Delete multiple User records.
+    deleteManyUsers(
+        where: UserWhereFilterInput!
+    ): BatchPayload
+
+    # Create a new single Site record.
+    createSite(data: SiteCreateInput!): Site
+
+    # Create multiple new Site records.
+    createManySites(
+        data: [SiteCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    # Update an existing single Site record.
+    updateSite(
+        where: SiteWhereUniqueInput!
+        data: SiteUpdateInput!
+    ): Site
+
+    # Update multiple existing Site records.
+    updateManySites(
+        where: SiteWhereFilterInput!
+        data: SiteUpdateInput!
+    ): BatchPayload
+
+    # Update an existing or create a new single Site record.
+    upsertSite(
+        data: SiteUpdateInput!
+        where: SiteWhereUniqueInput!
+    ): Site
+
+    # Delete a single Site record.
+    deleteSite(where: SiteWhereUniqueInput!): Site
+
+    # Delete multiple Site records.
+    deleteManySites(
+        where: SiteWhereFilterInput!
+    ): BatchPayload
+
+    # Create a new single SiteLog record.
+    createSiteLog(data: SiteLogCreateInput!): SiteLog
+
+    # Create multiple new SiteLog records.
+    createManySiteLogs(
+        data: [SiteLogCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    # Update an existing single SiteLog record.
+    updateSiteLog(
+        where: SiteLogWhereUniqueInput!
+        data: SiteLogUpdateInput!
+    ): SiteLog
+
+    # Update multiple existing SiteLog records.
+    updateManySiteLogs(
+        where: SiteLogWhereFilterInput!
+        data: SiteLogUpdateInput!
+    ): BatchPayload
+
+    # Update an existing or create a new single SiteLog record.
+    upsertSiteLog(
+        data: SiteLogUpdateInput!
+        where: SiteLogWhereUniqueInput!
+    ): SiteLog
+
+    # Delete a single SiteLog record.
+    deleteSiteLog(where: SiteLogWhereUniqueInput!): SiteLog
+
+    # Delete multiple SiteLog records.
+    deleteManySiteLogs(
+        where: SiteLogWhereFilterInput!
+    ): BatchPayload
+}
+
+enum OrderByArg {
+    ASC
+    DESC
+}
+
+type Query {
+    # Find a single User record by unique identifier.
+    getUser(where: UserWhereUniqueInput!): User
+
+    # Find many User records (optional query filters).
+    listUsers(
+        where: UserWhereFilterInput
+        orderBy: [UserOrderByInput]
+        skip: Int
+        take: Int
+    ): [User]
+
+    # Count all User records (optional query filters).
+    countUsers(
+        where: UserWhereFilterInput
+        orderBy: [UserOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    # Find a single Site record by unique identifier.
+    getSite(where: SiteWhereUniqueInput!): Site
+
+    # Find many Site records (optional query filters).
+    listSites(
+        where: SiteWhereFilterInput
+        orderBy: [SiteOrderByInput]
+        skip: Int
+        take: Int
+    ): [Site]
+
+    # Count all Site records (optional query filters).
+    countSites(
+        where: SiteWhereFilterInput
+        orderBy: [SiteOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    # Find a single SiteLog record by unique identifier.
+    getSiteLog(where: SiteLogWhereUniqueInput!): SiteLog
+
+    # Find many SiteLog records (optional query filters).
+    listSiteLogs(
+        where: SiteLogWhereFilterInput
+        orderBy: [SiteLogOrderByInput]
+        skip: Int
+        take: Int
+    ): [SiteLog]
+
+    # Count all SiteLog records (optional query filters).
+    countSiteLogs(
+        where: SiteLogWhereFilterInput
+        orderBy: [SiteLogOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+}
+
+type Site {
+    id: Int!
+    createdAt: AWSDateTime!
+    updatedAt: AWSDateTime!
+    name: String!
+    city: String
+    latitude: String
+    longitude: String
+    user: User!
+    userId: Int!
+    siteLogs: [SiteLog!]
+}
+
+input SiteConnectOrCreateInput {
+    where: SiteWhereUniqueInput!
+    create: SiteCreateInput!
+}
+
+input SiteCreateInput {
+    name: String!
+    city: String
+    latitude: String
+    longitude: String
+    user: SiteUserCreateRelationsInput!
+    userId: Int!
+    siteLogs: SiteSiteLogsCreateRelationsInput
+}
+
+input SiteCreateManyInput {
+    name: String!
+    city: String
+    latitude: String
+    longitude: String
+    userId: Int!
+}
+
+input SiteDeleteManyInput {
+    where: SiteWhereFilterInput!
+}
+
+input SiteDeleteUniqueInput {
+    where: SiteWhereUniqueInput!
+}
+
+input SiteFilterRelationsInput {
+    every: SiteWhereFilterInput
+    none: SiteWhereFilterInput
+    some: SiteWhereFilterInput
+}
+
+type SiteLog {
+    id: Int!
+    createdAt: AWSDateTime!
+    user: User!
+    userId: Int!
+    site: Site!
+    siteId: Int!
+}
+
+input SiteLogConnectOrCreateInput {
+    where: SiteLogWhereUniqueInput!
+    create: SiteLogCreateInput!
+}
+
+input SiteLogCreateInput {
+    user: SiteLogUserCreateRelationsInput!
+    userId: Int!
+    site: SiteLogSiteCreateRelationsInput!
+    siteId: Int!
+}
+
+input SiteLogCreateManyInput {
+    userId: Int!
+    siteId: Int!
+}
+
+input SiteLogDeleteManyInput {
+    where: SiteLogWhereFilterInput!
+}
+
+input SiteLogDeleteUniqueInput {
+    where: SiteLogWhereUniqueInput!
+}
+
+input SiteLogFilterRelationsInput {
+    every: SiteLogWhereFilterInput
+    none: SiteLogWhereFilterInput
+    some: SiteLogWhereFilterInput
+}
+
+input SiteLogOrderByInput {
+    id: OrderByArg
+    createdAt: OrderByArg
+    userId: OrderByArg
+    siteId: OrderByArg
+}
+
+input SiteLogSiteCreateRelationsInput {
+    create: SiteCreateInput
+    connect: SiteWhereUniqueInput
+    connectOrCreate: SiteConnectOrCreateInput
+}
+
+input SiteLogSiteUpdateRelationsInput {
+    create: SiteCreateInput
+    connect: SiteWhereUniqueInput
+    connectOrCreate: SiteConnectOrCreateInput
+    update: SiteUpdateInput
+    upsert: SiteUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+
+input SiteLogUpdateInput {
+    user: SiteLogUserUpdateRelationsInput
+    userId: Int
+    site: SiteLogSiteUpdateRelationsInput
+    siteId: Int
+}
+
+input SiteLogUpdateManyInput {
+    where: SiteLogWhereFilterInput!
+    data: SiteLogUpdateInput!
+}
+
+input SiteLogUpdateUniqueInput {
+    data: SiteLogUpdateInput!
+    where: SiteLogWhereUniqueInput!
+}
+
+input SiteLogUpsertInput {
+    create: SiteLogCreateInput!
+    update: SiteLogUpdateInput!
+}
+
+input SiteLogUpsertUniqueInput {
+    where: SiteLogWhereUniqueInput!
+    create: SiteLogCreateInput!
+    update: SiteLogUpdateInput!
+}
+
+input SiteLogUserCreateRelationsInput {
+    create: UserCreateInput
+    connect: UserWhereUniqueInput
+    connectOrCreate: UserConnectOrCreateInput
+}
+
+input SiteLogUserUpdateRelationsInput {
+    create: UserCreateInput
+    connect: UserWhereUniqueInput
+    connectOrCreate: UserConnectOrCreateInput
+    update: UserUpdateInput
+    upsert: UserUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+
+input SiteLogWhereFilterInput {
+    OR: [SiteLogWhereFilterInput]
+    NOT: [SiteLogWhereFilterInput]
+    AND: [SiteLogWhereFilterInput]
+    id: IntFilterInput
+    createdAt: AWSDateTimeFilterInput
+    user: UserWhereFilterInput
+    userId: IntFilterInput
+    site: SiteWhereFilterInput
+    siteId: IntFilterInput
+}
+
+input SiteLogWhereUniqueInput {
+    id: Int
+    userId: Int
+    siteId: Int
+}
+
+input SiteOrderByInput {
+    id: OrderByArg
+    createdAt: OrderByArg
+    updatedAt: OrderByArg
+    name: OrderByArg
+    city: OrderByArg
+    latitude: OrderByArg
+    longitude: OrderByArg
+    userId: OrderByArg
+}
+
+input SiteSiteLogsCreateRelationsInput {
+    create: [SiteLogCreateInput]
+    connect: [SiteLogWhereUniqueInput]
+    connectOrCreate: [SiteLogConnectOrCreateInput]
+}
+
+input SiteSiteLogsUpdateRelationsInput {
+    create: [SiteLogCreateInput]
+    connect: [SiteLogWhereUniqueInput]
+    connectOrCreate: [SiteLogConnectOrCreateInput]
+    update: [SiteLogUpdateUniqueInput]
+    upsert: [SiteLogUpsertUniqueInput]
+    delete: [SiteLogDeleteUniqueInput]
+    disconnect: [SiteLogWhereUniqueInput]
+    set: [SiteLogWhereUniqueInput]
+    updateMany: [SiteLogUpdateManyInput]
+    deleteMany: [SiteLogDeleteManyInput]
+}
+
+input SiteUpdateInput {
+    name: String
+    city: String
+    latitude: String
+    longitude: String
+    user: SiteUserUpdateRelationsInput
+    userId: Int
+    siteLogs: SiteSiteLogsUpdateRelationsInput
+}
+
+input SiteUpdateManyInput {
+    where: SiteWhereFilterInput!
+    data: SiteUpdateInput!
+}
+
+input SiteUpdateUniqueInput {
+    data: SiteUpdateInput!
+    where: SiteWhereUniqueInput!
+}
+
+input SiteUpsertInput {
+    create: SiteCreateInput!
+    update: SiteUpdateInput!
+}
+
+input SiteUpsertUniqueInput {
+    where: SiteWhereUniqueInput!
+    create: SiteCreateInput!
+    update: SiteUpdateInput!
+}
+
+input SiteUserCreateRelationsInput {
+    create: UserCreateInput
+    connect: UserWhereUniqueInput
+    connectOrCreate: UserConnectOrCreateInput
+}
+
+input SiteUserUpdateRelationsInput {
+    create: UserCreateInput
+    connect: UserWhereUniqueInput
+    connectOrCreate: UserConnectOrCreateInput
+    update: UserUpdateInput
+    upsert: UserUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+
+input SiteWhereFilterInput {
+    OR: [SiteWhereFilterInput]
+    NOT: [SiteWhereFilterInput]
+    AND: [SiteWhereFilterInput]
+    id: IntFilterInput
+    createdAt: AWSDateTimeFilterInput
+    updatedAt: AWSDateTimeFilterInput
+    name: StringFilterInput
+    city: StringFilterInput
+    latitude: StringFilterInput
+    longitude: StringFilterInput
+    user: UserWhereFilterInput
+    userId: IntFilterInput
+    siteLogs: SiteLogFilterRelationsInput
+}
+
+input SiteWhereUniqueInput {
+    id: Int
+    userId: Int
+}
+
+input StringFilterInput {
+    contains: String
+    endsWith: String
+    equals: String
+    in: [String!]
+    not: StringFilterInput
+    notIn: [String!]
+    startsWith: String
+}
+
+type Subscription {
+    # Triggered from `createUser` mutation (excl. `createManyUsers` and `upsertUser`).
+    onCreatedUser(id: Int, email: AWSEmail): User
+        @aws_subscribe(mutations: ["createUser"])
+
+    # Triggered from `updateUser` mutation (excl. `updateManyUsers` and `upsertUser`).
+    onUpdatedUser(id: Int, email: AWSEmail): User
+        @aws_subscribe(mutations: ["updateUser"])
+
+    # Triggered from `upsertUser` mutation.
+    onUpsertedUser(id: Int, email: AWSEmail): User
+        @aws_subscribe(mutations: ["upsertUser"])
+
+    # Triggered from `deleteUser` mutation (excl. `deleteManyUsers`).
+    onDeletedUser(id: Int, email: AWSEmail): User
+        @aws_subscribe(mutations: ["deleteUser"])
+
+    # Triggered from ANY SINGLE record mutation (excl. `on*ManyUsers`).
+    onMutatedUser(id: Int, email: AWSEmail): User
+        @aws_subscribe(
+            mutations: [
+                "createUser"
+                "updateUser"
+                "upsertUser"
+                "deleteUser"
+            ]
+        )
+
+    # Triggered from `createManyUsers` mutation.
+    onCreatedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["createManyUsers"])
+
+    # Triggered from `updateManyUsers` mutation.
+    onUpdatedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["updateManyUsers"])
+
+    # Triggered from `deleteManyUsers` mutation.
+    onDeletedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyUsers"])
+
+    # Triggered from ANY MULTIPLE records mutation (excl. single record mutations).
+    onMutatedManyUsers: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyUsers"
+                "updateManyUsers"
+                "deleteManyUsers"
+            ]
+        )
+
+    # Triggered from `createSite` mutation (excl. `createManySites` and `upsertSite`).
+    onCreatedSite(id: Int, userId: Int): Site
+        @aws_subscribe(mutations: ["createSite"])
+
+    # Triggered from `updateSite` mutation (excl. `updateManySites` and `upsertSite`).
+    onUpdatedSite(id: Int, userId: Int): Site
+        @aws_subscribe(mutations: ["updateSite"])
+
+    # Triggered from `upsertSite` mutation.
+    onUpsertedSite(id: Int, userId: Int): Site
+        @aws_subscribe(mutations: ["upsertSite"])
+
+    # Triggered from `deleteSite` mutation (excl. `deleteManySites`).
+    onDeletedSite(id: Int, userId: Int): Site
+        @aws_subscribe(mutations: ["deleteSite"])
+
+    # Triggered from ANY SINGLE record mutation (excl. `on*ManySites`).
+    onMutatedSite(id: Int, userId: Int): Site
+        @aws_subscribe(
+            mutations: [
+                "createSite"
+                "updateSite"
+                "upsertSite"
+                "deleteSite"
+            ]
+        )
+
+    # Triggered from `createManySites` mutation.
+    onCreatedManySites: BatchPayload
+        @aws_subscribe(mutations: ["createManySites"])
+
+    # Triggered from `updateManySites` mutation.
+    onUpdatedManySites: BatchPayload
+        @aws_subscribe(mutations: ["updateManySites"])
+
+    # Triggered from `deleteManySites` mutation.
+    onDeletedManySites: BatchPayload
+        @aws_subscribe(mutations: ["deleteManySites"])
+
+    # Triggered from ANY MULTIPLE records mutation (excl. single record mutations).
+    onMutatedManySites: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManySites"
+                "updateManySites"
+                "deleteManySites"
+            ]
+        )
+
+    # Triggered from `createSiteLog` mutation (excl. `createManySiteLogs` and `upsertSiteLog`).
+    onCreatedSiteLog(
+        id: Int
+        userId: Int
+        siteId: Int
+    ): SiteLog @aws_subscribe(mutations: ["createSiteLog"])
+
+    # Triggered from `updateSiteLog` mutation (excl. `updateManySiteLogs` and `upsertSiteLog`).
+    onUpdatedSiteLog(
+        id: Int
+        userId: Int
+        siteId: Int
+    ): SiteLog @aws_subscribe(mutations: ["updateSiteLog"])
+
+    # Triggered from `upsertSiteLog` mutation.
+    onUpsertedSiteLog(
+        id: Int
+        userId: Int
+        siteId: Int
+    ): SiteLog @aws_subscribe(mutations: ["upsertSiteLog"])
+
+    # Triggered from `deleteSiteLog` mutation (excl. `deleteManySiteLogs`).
+    onDeletedSiteLog(
+        id: Int
+        userId: Int
+        siteId: Int
+    ): SiteLog @aws_subscribe(mutations: ["deleteSiteLog"])
+
+    # Triggered from ANY SINGLE record mutation (excl. `on*ManySiteLogs`).
+    onMutatedSiteLog(
+        id: Int
+        userId: Int
+        siteId: Int
+    ): SiteLog
+        @aws_subscribe(
+            mutations: [
+                "createSiteLog"
+                "updateSiteLog"
+                "upsertSiteLog"
+                "deleteSiteLog"
+            ]
+        )
+
+    # Triggered from `createManySiteLogs` mutation.
+    onCreatedManySiteLogs: BatchPayload
+        @aws_subscribe(mutations: ["createManySiteLogs"])
+
+    # Triggered from `updateManySiteLogs` mutation.
+    onUpdatedManySiteLogs: BatchPayload
+        @aws_subscribe(mutations: ["updateManySiteLogs"])
+
+    # Triggered from `deleteManySiteLogs` mutation.
+    onDeletedManySiteLogs: BatchPayload
+        @aws_subscribe(mutations: ["deleteManySiteLogs"])
+
+    # Triggered from ANY MULTIPLE records mutation (excl. single record mutations).
+    onMutatedManySiteLogs: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManySiteLogs"
+                "updateManySiteLogs"
+                "deleteManySiteLogs"
+            ]
+        )
+}
+
+type User {
+    id: Int!
+    email: AWSEmail!
+    name: String!
+    password: String!
+    sites: [Site!]
+    siteLogs: [SiteLog!]
+}
+
+input UserConnectOrCreateInput {
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+}
+
+input UserCreateInput {
+    email: AWSEmail!
+    name: String!
+    password: String!
+    sites: UserSitesCreateRelationsInput
+    siteLogs: UserSiteLogsCreateRelationsInput
+}
+
+input UserCreateManyInput {
+    email: AWSEmail!
+    name: String!
+    password: String!
+}
+
+input UserDeleteManyInput {
+    where: UserWhereFilterInput!
+}
+
+input UserDeleteUniqueInput {
+    where: UserWhereUniqueInput!
+}
+
+input UserFilterRelationsInput {
+    every: UserWhereFilterInput
+    none: UserWhereFilterInput
+    some: UserWhereFilterInput
+}
+
+input UserOrderByInput {
+    id: OrderByArg
+    email: OrderByArg
+    name: OrderByArg
+    password: OrderByArg
+}
+
+input UserSiteLogsCreateRelationsInput {
+    create: [SiteLogCreateInput]
+    connect: [SiteLogWhereUniqueInput]
+    connectOrCreate: [SiteLogConnectOrCreateInput]
+}
+
+input UserSiteLogsUpdateRelationsInput {
+    create: [SiteLogCreateInput]
+    connect: [SiteLogWhereUniqueInput]
+    connectOrCreate: [SiteLogConnectOrCreateInput]
+    update: [SiteLogUpdateUniqueInput]
+    upsert: [SiteLogUpsertUniqueInput]
+    delete: [SiteLogDeleteUniqueInput]
+    disconnect: [SiteLogWhereUniqueInput]
+    set: [SiteLogWhereUniqueInput]
+    updateMany: [SiteLogUpdateManyInput]
+    deleteMany: [SiteLogDeleteManyInput]
+}
+
+input UserSitesCreateRelationsInput {
+    create: [SiteCreateInput]
+    connect: [SiteWhereUniqueInput]
+    connectOrCreate: [SiteConnectOrCreateInput]
+}
+
+input UserSitesUpdateRelationsInput {
+    create: [SiteCreateInput]
+    connect: [SiteWhereUniqueInput]
+    connectOrCreate: [SiteConnectOrCreateInput]
+    update: [SiteUpdateUniqueInput]
+    upsert: [SiteUpsertUniqueInput]
+    delete: [SiteDeleteUniqueInput]
+    disconnect: [SiteWhereUniqueInput]
+    set: [SiteWhereUniqueInput]
+    updateMany: [SiteUpdateManyInput]
+    deleteMany: [SiteDeleteManyInput]
+}
+
+input UserUpdateInput {
+    email: AWSEmail
+    name: String
+    password: String
+    sites: UserSitesUpdateRelationsInput
+    siteLogs: UserSiteLogsUpdateRelationsInput
+}
+
+input UserUpdateManyInput {
+    where: UserWhereFilterInput!
+    data: UserUpdateInput!
+}
+
+input UserUpdateUniqueInput {
+    data: UserUpdateInput!
+    where: UserWhereUniqueInput!
+}
+
+input UserUpsertInput {
+    create: UserCreateInput!
+    update: UserUpdateInput!
+}
+
+input UserUpsertUniqueInput {
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+    update: UserUpdateInput!
+}
+
+input UserWhereFilterInput {
+    OR: [UserWhereFilterInput]
+    NOT: [UserWhereFilterInput]
+    AND: [UserWhereFilterInput]
+    id: IntFilterInput
+    email: AWSEmailFilterInput
+    name: StringFilterInput
+    password: StringFilterInput
+    sites: SiteFilterRelationsInput
+    siteLogs: SiteLogFilterRelationsInput
+}
+
+input UserWhereUniqueInput {
+    id: Int
+    email: AWSEmail
+}

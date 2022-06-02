@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+generator appsync {
+    provider = "prisma-appsync"
+    binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String
+  password String
+
+  sites Site[]
+  siteLogs SiteLog[]
+}
+
+model Site {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name     String
+  city   String?
+  latitude   String?
+  longitude   String?
+  
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  siteLogs SiteLog[]
+}
+
+model SiteLog {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  site    Site    @relation(fields: [siteId], references: [id])
+  siteId  Int
+
+}
